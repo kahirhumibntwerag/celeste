@@ -97,18 +97,16 @@
   }
 }
 
+
 @keyframes scaleIn {
   0% {
-    transform: scale(1);
+    transform: scale(1.0);
    }
-   50%{
-    transform: scale(1.3);
-
+   50% {
+    transform: scale(1.01);
    }
-
   100% {
     transform: scale(1);
-
   }
 } 
 @keyframes scaleUpDown {
@@ -121,6 +119,28 @@
   100% {
     transform: scale(1);
   }
+}
+@keyframes slideIn {
+  from{
+    right: -100%;
+  }
+  to {
+    right: 0;
+  }
+}
+@keyframes slideOut {
+  from{
+    right: 0;
+  }
+  to {
+    right: -100%;
+  }
+}   
+.slide-in {
+  animation: slideIn 0.5s ease-out forwards;
+}
+.slide-out {
+  animation: slideOut 0.5s ease-out forwards;
 }
 
 .animate-scale-up-down {
@@ -139,7 +159,9 @@
   animation-play-state: running;
 
 }
-
+.scale-in {
+  animation: scaleIn 1s linear
+}
 .animate-textSwitch {
   animation: textSwitch 6s ease-in-out infinite;
 }

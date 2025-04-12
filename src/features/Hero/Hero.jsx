@@ -4,7 +4,7 @@ import CustomButton from "../../components/CustomButton";
 
 const Hero = () => {
   return (
-    <div className="relative w-[100%]">
+    <div className="relative w-[100%] overflow-hidden">
       <img
         className="w-[100%] object-cover hidden sm:block object-center fade-in-zoom"
         loading="lazy"

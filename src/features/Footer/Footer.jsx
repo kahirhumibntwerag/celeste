@@ -1,5 +1,7 @@
 import React from "react";
-import Searchbar from "../Navbar/components/Searchbar";
+import Searchbar, { SearchInput } from '../Navbar/components/Searchbar';
+import SearchIcon from '../Navbar/components/SearchIcon';
+import SubmitButton from '../Navbar/components/SubmitButton';
 
 const Footer = () => {
   return (
@@ -10,31 +12,15 @@ const Footer = () => {
           <div className="flex flex-col gap-4 justify-center">
             <h2 className="text-4xl">Stay Stylish, Stay Updated</h2>
             <p className="mb-8">Discover latest trends in fashion</p>
-            <div className="justify-between rounded-4xl py-2 px-1 border-1 border-gray-300 flex  items-center text-center relative ">
-              <input
-                className="bg-transparent p-1 outline-none border-0.5 border-[#D4CABA] overflow-hidden"
-                type="text"
-                placeholder="Enter your Email"
+            <Searchbar className="flex gap-2 items-center rounded-4xl border-2 border-white px-3 py-1 relative overflow-hidden">
+              <SearchInput
+                placeholder="Enter your email..."
+                className="bg-transparent p-2 outline-none text-white placeholder:text-white flex-1 "
               />
-
-              <div className="bg-white rounded-full p-2 text-black cursor-pointer absolute right-1">
-                <svg
-                  width="17"
-                  height="17"
-                  viewBox="0 0 21 19"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    d="M1 9.5H18.4709M11.2645 1L20 9.5L11.2645 18"
-                    stroke="currentColor"
-                    stroke-width="1.5"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                  ></path>
-                </svg>
-              </div>
-            </div>{" "}
+              <SubmitButton
+                className="rounded-full p-3 bg-white text-black absolute right-1"
+              />
+            </Searchbar>
           </div>
         </div>
 
@@ -66,7 +52,9 @@ const Footer = () => {
           </div>
         </div>
       </div>
-      <div className="bg-black flex gap-2 pt-8 pb-16 px-8">
+
+      {/* Payment methods section */}
+      <div className="bg-black flex gap-2 pt-8 pb-16 px-8 justify-center flex-wrap">
         <svg
           class="payment-icon"
           version="1.1"

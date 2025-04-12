@@ -54,7 +54,7 @@ const ColorSwatch = ({ colors, selectedColorIndex, setSelectedColorIndex }) => (
   </div>
 );
 
-const Product = ({ product }) => {
+const Product = ({ product, showColorSwatches = true }) => {
   const navigate = useNavigate();
   const [selectedColorIndex, setSelectedColorIndex] = React.useState(0);
 
@@ -70,11 +70,13 @@ const Product = ({ product }) => {
       <div className="flex flex-col gap-3">
         <ProductTitle title={product.title} />
         <ProductPrice price={product.price} />
-        <ColorSwatch 
-          colors={product.colors}
-          selectedColorIndex={selectedColorIndex}
-          setSelectedColorIndex={setSelectedColorIndex}
-        />
+        {showColorSwatches && product.colors?.length > 0 && (
+          <ColorSwatch 
+            colors={product.colors}
+            selectedColorIndex={selectedColorIndex}
+            setSelectedColorIndex={setSelectedColorIndex}
+          />
+        )}
       </div>
     </div>
   );

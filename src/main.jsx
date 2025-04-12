@@ -7,8 +7,8 @@ import NotFoundPage from './features/Pages/NotFoundPage'
 import Product from './features/Pages/Product'
 import {Provider} from 'react-redux'
 import {createBrowserRouter, RouterProvider} from 'react-router-dom'
-import { store } from './store.js'
-
+import Home from './features/Pages/Home'
+import Collections from './features/Pages/Collections'
 const router = createBrowserRouter([
   {
     path: '/',
@@ -21,6 +21,15 @@ const router = createBrowserRouter([
       {
         path: 'product/:productId',
         element: <Product />
+      },
+      {
+        path: '/',
+        element: <Home />
+      }
+      ,
+      {
+        path: 'collections/:category',
+        element: <Collections />
       }
     ]
   },{
@@ -30,8 +39,6 @@ const router = createBrowserRouter([
 ])
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <Provider store={store}>
       <RouterProvider router={router}/>
-    </Provider>
   </StrictMode>,
 )
