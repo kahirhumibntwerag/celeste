@@ -54,7 +54,7 @@ const Footer = () => {
       </div>
 
       {/* Payment methods section */}
-      <div className="bg-black flex gap-2 pt-8 pb-16 px-8 justify-center flex-wrap">
+      <div className="bg-black flex gap-2 pt-8 pb-16 px-8 items-start flex-wrap">
         <svg
           class="payment-icon"
           version="1.1"

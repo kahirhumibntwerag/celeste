@@ -4,7 +4,7 @@ import './index.css'
 import App from './App.jsx'
 import About from './features/Pages/About'
 import NotFoundPage from './features/Pages/NotFoundPage'
-import Product from './features/Pages/Product'
+import ProductPage from './features/Pages/Product'
 import {Provider} from 'react-redux'
 import {createBrowserRouter, RouterProvider} from 'react-router-dom'
 import Home from './features/Pages/Home'
@@ -20,7 +20,7 @@ const router = createBrowserRouter([
       },
       {
         path: 'product/:productId',
-        element: <Product />
+        element: <ProductPage />
       },
       {
         path: '/',

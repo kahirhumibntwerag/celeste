@@ -9,19 +9,12 @@ export const products = [
         name: "#000000",
         mainImage: "https://mlameh.com/cdn/shop/collections/S5570-S5570-1_2_ac4bf876-6b0c-4890-8ed3-fb437f50ce87.jpg?v=1742164284&width=1100",
         hoverImage: "https://mlameh.com/cdn/shop/collections/B094-S5528-S5543_8.jpg?v=1742164210&width=1100",
-        sizes: ["S", "M", "L", "XL"]
-      },
-      {
-        name: "#FFFFFF",
-        mainImage: "https://mlameh.com/cdn/shop/collections/S5402-S5402-1_5.jpg?v=1742164323&width=1100",
-        hoverImage: "https://mlameh.com/cdn/shop/collections/B094-S5528-S5543_2.jpg?v=1742164115&width=1100",
-        sizes: ["S", "M", "L"]
-      },
-      {
-        name: "#0000FF",
-        mainImage: "https://mlameh.com/cdn/shop/collections/B094-S5528-S5543_8.jpg?v=1742164210&width=1100",
-        hoverImage: "https://mlameh.com/cdn/shop/collections/S5570-S5570-1_2_ac4bf876-6b0c-4890-8ed3-fb437f50ce87.jpg?v=1742164284&width=1100",
-        sizes: ["M", "L", "XL"]
+        sizes: [
+          { size: "S", stock: 0 },
+          { size: "M", stock: 15 },
+          { size: "L", stock: 20 },
+          { size: "XL", stock: 8 }
+        ]
       }
     ]
   },
@@ -35,19 +28,32 @@ export const products = [
         name: "#000000",
         mainImage: "https://mlameh.com/cdn/shop/collections/B094-S5528-S5543_8.jpg?v=1742164210&width=1100",
         hoverImage: "https://mlameh.com/cdn/shop/collections/S5402-S5402-1_5.jpg?v=1742164323&width=1100",
-        sizes: ["S", "M", "L", "XL"]
+        sizes: [
+          { size: "S", stock: 0 },
+          { size: "M", stock: 12 },
+          { size: "L", stock: 0 },
+          { size: "XL", stock: 5 }
+        ]
       },
       {
         name: "#FFFFFF",
         mainImage: "https://mlameh.com/cdn/shop/collections/B094-S5528-S5543_2.jpg?v=1742164115&width=1100",
         hoverImage: "https://mlameh.com/cdn/shop/collections/S5570-S5570-1_2_ac4bf876-6b0c-4890-8ed3-fb437f50ce87.jpg?v=1742164284&width=1100",
-        sizes: ["S", "M", "L"]
+        sizes: [
+          { size: "S", stock: 15 },
+          { size: "M", stock: 0 },
+          { size: "L", stock: 10 }
+        ]
       },
       {
         name: "#0000FF",
         mainImage: "https://mlameh.com/cdn/shop/collections/S5402-S5402-1_5.jpg?v=1742164323&width=1100",
         hoverImage: "https://mlameh.com/cdn/shop/collections/B094-S5528-S5543_8.jpg?v=1742164210&width=1100",
-        sizes: ["M", "L", "XL"]
+        sizes: [
+          { size: "M", stock: 7 },
+          { size: "L", stock: 0 },
+          { size: "XL", stock: 3 }
+        ]
       }
     ]
   },
@@ -61,19 +67,32 @@ export const products = [
         name: "#000000",
         mainImage: "https://mlameh.com/cdn/shop/collections/S5402-S5402-1_5.jpg?v=1742164323&width=1100",
         hoverImage: "https://mlameh.com/cdn/shop/collections/B094-S5528-S5543_2.jpg?v=1742164115&width=1100",
-        sizes: ["S", "M", "L", "XL"]
+        sizes: [
+          { size: "S", stock: 12 },
+          { size: "M", stock: 15 },
+          { size: "L", stock: 18 },
+          { size: "XL", stock: 10 }
+        ]
       },
       {
         name: "#FFFFFF",
         mainImage: "https://mlameh.com/cdn/shop/collections/S5570-S5570-1_2_ac4bf876-6b0c-4890-8ed3-fb437f50ce87.jpg?v=1742164284&width=1100",
         hoverImage: "https://mlameh.com/cdn/shop/collections/B094-S5528-S5543_8.jpg?v=1742164210&width=1100",
-        sizes: ["S", "M", "L"]
+        sizes: [
+          { size: "S", stock: 14 },
+          { size: "M", stock: 16 },
+          { size: "L", stock: 12 }
+        ]
       },
       {
         name: "#0000FF",
         mainImage: "https://mlameh.com/cdn/shop/collections/B094-S5528-S5543_2.jpg?v=1742164115&width=1100",
         hoverImage: "https://mlameh.com/cdn/shop/collections/S5402-S5402-1_5.jpg?v=1742164323&width=1100",
-        sizes: ["M", "L", "XL"]
+        sizes: [
+          { size: "M", stock: 15 },
+          { size: "L", stock: 13 },
+          { size: "XL", stock: 11 }
+        ]
       }
     ]
   },
@@ -87,19 +106,32 @@ export const products = [
         name: "#000000",
         mainImage: "https://mlameh.com/cdn/shop/collections/B094-S5528-S5543_2.jpg?v=1742164115&width=1100",
         hoverImage: "https://mlameh.com/cdn/shop/collections/S5570-S5570-1_2_ac4bf876-6b0c-4890-8ed3-fb437f50ce87.jpg?v=1742164284&width=1100",
-        sizes: ["S", "M", "L", "XL"]
+        sizes: [
+          { size: "S", stock: 10 },
+          { size: "M", stock: 15 },
+          { size: "L", stock: 20 },
+          { size: "XL", stock: 8 }
+        ]
       },
       {
         name: "#FFFFFF",
         mainImage: "https://mlameh.com/cdn/shop/collections/B094-S5528-S5543_8.jpg?v=1742164210&width=1100",
         hoverImage: "https://mlameh.com/cdn/shop/collections/S5402-S5402-1_5.jpg?v=1742164323&width=1100",
-        sizes: ["S", "M", "L"]
+        sizes: [
+          { size: "S", stock: 12 },
+          { size: "M", stock: 18 },
+          { size: "L", stock: 15 }
+        ]
       },
       {
         name: "#0000FF",
         mainImage: "https://mlameh.com/cdn/shop/collections/S5570-S5570-1_2_ac4bf876-6b0c-4890-8ed3-fb437f50ce87.jpg?v=1742164284&width=1100",
         hoverImage: "https://mlameh.com/cdn/shop/collections/B094-S5528-S5543_2.jpg?v=1742164115&width=1100",
-        sizes: ["M", "L", "XL"]
+        sizes: [
+          { size: "M", stock: 14 },
+          { size: "L", stock: 16 },
+          { size: "XL", stock: 10 }
+        ]
       }
     ]
   },
@@ -113,19 +145,32 @@ export const products = [
         name: "#000000",
         mainImage: "https://mlameh.com/cdn/shop/collections/S5570-S5570-1_2_ac4bf876-6b0c-4890-8ed3-fb437f50ce87.jpg?v=1742164284&width=1100",
         hoverImage: "https://mlameh.com/cdn/shop/collections/B094-S5528-S5543_8.jpg?v=1742164210&width=1100",
-        sizes: ["S", "M", "L", "XL"]
+        sizes: [
+          { size: "S", stock: 10 },
+          { size: "M", stock: 15 },
+          { size: "L", stock: 20 },
+          { size: "XL", stock: 8 }
+        ]
       },
       {
         name: "#FFFFFF",
         mainImage: "https://mlameh.com/cdn/shop/collections/S5402-S5402-1_5.jpg?v=1742164323&width=1100",
         hoverImage: "https://mlameh.com/cdn/shop/collections/B094-S5528-S5543_2.jpg?v=1742164115&width=1100",
-        sizes: ["S", "M", "L"]
+        sizes: [
+          { size: "S", stock: 12 },
+          { size: "M", stock: 18 },
+          { size: "L", stock: 15 }
+        ]
       },
       {
         name: "#0000FF",
         mainImage: "https://mlameh.com/cdn/shop/collections/B094-S5528-S5543_8.jpg?v=1742164210&width=1100",
         hoverImage: "https://mlameh.com/cdn/shop/collections/S5570-S5570-1_2_ac4bf876-6b0c-4890-8ed3-fb437f50ce87.jpg?v=1742164284&width=1100",
-        sizes: ["M", "L", "XL"]
+        sizes: [
+          { size: "M", stock: 14 },
+          { size: "L", stock: 16 },
+          { size: "XL", stock: 10 }
+        ]
       }
     ]
   },
@@ -139,19 +184,32 @@ export const products = [
         name: "#000000",
         mainImage: "https://mlameh.com/cdn/shop/collections/B094-S5528-S5543_8.jpg?v=1742164210&width=1100",
         hoverImage: "https://mlameh.com/cdn/shop/collections/S5402-S5402-1_5.jpg?v=1742164323&width=1100",
-        sizes: ["S", "M", "L", "XL"]
+        sizes: [
+          { size: "S", stock: 12 },
+          { size: "M", stock: 15 },
+          { size: "L", stock: 18 },
+          { size: "XL", stock: 10 }
+        ]
       },
       {
         name: "#FFFFFF",
         mainImage: "https://mlameh.com/cdn/shop/collections/B094-S5528-S5543_2.jpg?v=1742164115&width=1100",
         hoverImage: "https://mlameh.com/cdn/shop/collections/S5570-S5570-1_2_ac4bf876-6b0c-4890-8ed3-fb437f50ce87.jpg?v=1742164284&width=1100",
-        sizes: ["S", "M", "L"]
+        sizes: [
+          { size: "S", stock: 14 },
+          { size: "M", stock: 16 },
+          { size: "L", stock: 12 }
+        ]
       },
       {
         name: "#0000FF",
         mainImage: "https://mlameh.com/cdn/shop/collections/S5402-S5402-1_5.jpg?v=1742164323&width=1100",
         hoverImage: "https://mlameh.com/cdn/shop/collections/B094-S5528-S5543_8.jpg?v=1742164210&width=1100",
-        sizes: ["M", "L", "XL"]
+        sizes: [
+          { size: "M", stock: 15 },
+          { size: "L", stock: 13 },
+          { size: "XL", stock: 11 }
+        ]
       }
     ]
   },
@@ -165,19 +223,32 @@ export const products = [
         name: "#000000",
         mainImage: "https://mlameh.com/cdn/shop/collections/S5402-S5402-1_5.jpg?v=1742164323&width=1100",
         hoverImage: "https://mlameh.com/cdn/shop/collections/B094-S5528-S5543_2.jpg?v=1742164115&width=1100",
-        sizes: ["S", "M", "L", "XL"]
+        sizes: [
+          { size: "S", stock: 10 },
+          { size: "M", stock: 15 },
+          { size: "L", stock: 20 },
+          { size: "XL", stock: 8 }
+        ]
       },
       {
         name: "#FFFFFF",
         mainImage: "https://mlameh.com/cdn/shop/collections/S5570-S5570-1_2_ac4bf876-6b0c-4890-8ed3-fb437f50ce87.jpg?v=1742164284&width=1100",
         hoverImage: "https://mlameh.com/cdn/shop/collections/B094-S5528-S5543_8.jpg?v=1742164210&width=1100",
-        sizes: ["S", "M", "L"]
+        sizes: [
+          { size: "S", stock: 12 },
+          { size: "M", stock: 18 },
+          { size: "L", stock: 15 }
+        ]
       },
       {
         name: "#0000FF",
         mainImage: "https://mlameh.com/cdn/shop/collections/B094-S5528-S5543_2.jpg?v=1742164115&width=1100",
         hoverImage: "https://mlameh.com/cdn/shop/collections/S5402-S5402-1_5.jpg?v=1742164323&width=1100",
-        sizes: ["M", "L", "XL"]
+        sizes: [
+          { size: "M", stock: 14 },
+          { size: "L", stock: 16 },
+          { size: "XL", stock: 10 }
+        ]
       }
     ]
   },
@@ -191,19 +262,32 @@ export const products = [
         name: "#000000",
         mainImage: "https://mlameh.com/cdn/shop/collections/S5570-S5570-1_2_ac4bf876-6b0c-4890-8ed3-fb437f50ce87.jpg?v=1742164284&width=1100",
         hoverImage: "https://mlameh.com/cdn/shop/collections/B094-S5528-S5543_8.jpg?v=1742164210&width=1100",
-        sizes: ["S", "M", "L", "XL"]
+        sizes: [
+          { size: "S", stock: 10 },
+          { size: "M", stock: 15 },
+          { size: "L", stock: 20 },
+          { size: "XL", stock: 8 }
+        ]
       },
       {
         name: "#FFFFFF",
         mainImage: "https://mlameh.com/cdn/shop/collections/S5402-S5402-1_5.jpg?v=1742164323&width=1100",
         hoverImage: "https://mlameh.com/cdn/shop/collections/B094-S5528-S5543_2.jpg?v=1742164115&width=1100",
-        sizes: ["S", "M", "L"]
+        sizes: [
+          { size: "S", stock: 12 },
+          { size: "M", stock: 18 },
+          { size: "L", stock: 15 }
+        ]
       },
       {
         name: "#0000FF",
         mainImage: "https://mlameh.com/cdn/shop/collections/B094-S5528-S5543_8.jpg?v=1742164210&width=1100",
         hoverImage: "https://mlameh.com/cdn/shop/collections/S5570-S5570-1_2_ac4bf876-6b0c-4890-8ed3-fb437f50ce87.jpg?v=1742164284&width=1100",
-        sizes: ["M", "L", "XL"]
+        sizes: [
+          { size: "M", stock: 14 },
+          { size: "L", stock: 16 },
+          { size: "XL", stock: 10 }
+        ]
       }
     ]
   },
@@ -217,19 +301,32 @@ export const products = [
         name: "#000000",
         mainImage: "https://mlameh.com/cdn/shop/collections/B094-S5528-S5543_2.jpg?v=1742164115&width=1100",
         hoverImage: "https://mlameh.com/cdn/shop/collections/S5570-S5570-1_2_ac4bf876-6b0c-4890-8ed3-fb437f50ce87.jpg?v=1742164284&width=1100",
-        sizes: ["S", "M", "L", "XL"]
+        sizes: [
+          { size: "S", stock: 12 },
+          { size: "M", stock: 15 },
+          { size: "L", stock: 18 },
+          { size: "XL", stock: 10 }
+        ]
       },
       {
         name: "#FFFFFF",
         mainImage: "https://mlameh.com/cdn/shop/collections/B094-S5528-S5543_8.jpg?v=1742164210&width=1100",
         hoverImage: "https://mlameh.com/cdn/shop/collections/S5402-S5402-1_5.jpg?v=1742164323&width=1100",
-        sizes: ["S", "M", "L"]
+        sizes: [
+          { size: "S", stock: 14 },
+          { size: "M", stock: 16 },
+          { size: "L", stock: 12 }
+        ]
       },
       {
         name: "#0000FF",
         mainImage: "https://mlameh.com/cdn/shop/collections/S5570-S5570-1_2_ac4bf876-6b0c-4890-8ed3-fb437f50ce87.jpg?v=1742164284&width=1100",
         hoverImage: "https://mlameh.com/cdn/shop/collections/B094-S5528-S5543_2.jpg?v=1742164115&width=1100",
-        sizes: ["M", "L", "XL"]
+        sizes: [
+          { size: "M", stock: 15 },
+          { size: "L", stock: 13 },
+          { size: "XL", stock: 11 }
+        ]
       }
     ]
   }
