@@ -21,8 +21,8 @@ const ProductPage = () => {
     <>
       <Layout className="mx-auto px-4 lg:px-16 mt-8 lg:mt-16">
         <div className="flex flex-col lg:flex-row gap-8 lg:gap-16 pb-8 border-b border-gray-400">
-          <ImageSlider/>
-          <MainImage className="w-full lg:w-3/5 aspect-[2/3]" />
+          {/* <ImageSlider className='sticky top-0 h-fit' /> */}
+          <MainImage className="w-full lg:w-2/5 aspect-[2/3]" />
           <div className="w-full lg:w-2/5">
             <div className="flex flex-col gap-8">
               <div className="flex flex-col gap-8 border-b-2 border-gray-400 pb-8">

@@ -5,9 +5,9 @@ import { useImageSizeStore } from "../../store/productPageStore";
 const SizeBar = () => {
   const selectedSize = useImageSizeStore((state) => state.selectedSize);
   return (
-    <div className="flex flex-col gap-2">
+    <div className="flex flex-col gap-2 w-full">
       <div className="font-bold">Size: <span className="font-normal">{selectedSize}</span></div>
-      <div className="flex gap-4 relative">
+      <div className="flex justify-evenly  relative flex-wrap lg:flex-nowrap">
         {["S", "M", "L", "XL"].map((size) => (
           <div className="relative">
                         <div
@@ -27,7 +27,7 @@ const SizeBar = () => {
             </div>
             <Size
             key={size}
-            className="relative w-[100px] h-[40px] text-center flex items-center justify-center rounded-4xl text-xl"
+            className="relative w-[90px] text-center flex items-center justify-center  rounded-4xl text-xl"
             size={size}
           /></div>
         ))}
