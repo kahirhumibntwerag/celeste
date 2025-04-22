@@ -3,16 +3,18 @@ import { useNavigate } from "react-router-dom";
 
 // New components
 const ImageContainer = ({ product, selectedColorIndex, navigate }) => (
-  <div className="relative w-full h-full group" onClick={() => navigate(`/products/${product.id}`)}>
+  <div className="relative w-full h-full group" onClick={() => navigate(`/product/${product['product_id']}`)}>
     <img
       className="absolute inset-0 w-full h-full object-cover opacity-[1] group-hover:opacity-[0] transition-all duration-500"
-      src={product.colors[selectedColorIndex].mainImage}
+      src={product['main_image']}
       alt={product.title}
+      loading="lazy"
     />
     <img
       className="absolute inset-0 w-full h-full object-cover opacity-[0] group-hover:opacity-[1] transition-all duration-500"
-      src={product.colors[selectedColorIndex].hoverImage}
+      src={product['secondary_image']}
       alt={product.title}
+      loading="lazy"
     />
     <QuickViewButton navigate={navigate} />
   </div>

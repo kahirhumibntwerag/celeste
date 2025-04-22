@@ -12,61 +12,39 @@ import {
   onSnapshot,
 } from "firebase/firestore";
 import { auth, googleProvider } from "../../config/firebase";
+import supabase from "../../scripts/supabaseClient";
 
-// ✅ Function to create Stripe checkout session and get URL
-export const getCheckoutUrl = async (app, priceId) => {
-  const authInstance = getAuth(app);
-  const userId = authInstance.currentUser?.uid;
-
-  if (!userId) {
-    throw new Error("User is not authenticated");
-  }
-
-  const db = getFirestore(app);
-  const checkoutSessionRef = collection(
-    db,
-    "customers",
-    userId,
-    "checkout_sessions"
-  );
-
-  const docRef = await addDoc(checkoutSessionRef, {
-    price: priceId,
-    success_url: window.location.origin,
-    cancel_url: window.location.origin,
-  });
-
-  return new Promise((resolve, reject) => {
-    const unsubscribe = onSnapshot(docRef, (snap) => {
-      const data = snap.data();
-      const error = data?.error;
-      const url = data?.url;
-
-      if (error) {
-        unsubscribe();
-        reject(new Error(`An error occurred: ${error.message}`));
-      }
-
-      if (url) {
-        console.log("Stripe Checkout URL:", url);
-        unsubscribe();
-        resolve(url);
-      }
-    });
-  });
-};
 
 const Auth = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [currentUser, setCurrentUser] = useState("guest");
+  const [message, setMessage] = useState('')
 
-  const signUp = async () => {
-    try {
-      await createUserWithEmailAndPassword(auth, email, password);
-    } catch (error) {
-      console.error(error);
-      alert(error.message);
+  const signUp = async (event) => {
+    event.preventDefault()
+    // try {
+    //   await createUserWithEmailAndPassword(auth, email, password);
+    // } catch (error) {
+    //   console.error(error);
+    //   alert(error.message);
+    // }
+
+    let { data, error } = await supabase.auth.signInWithOtp({
+      email: email
+    })
+    
+    if(error){
+      setMessage(error.message)
+      console.log(error.message)
+      return
+    }
+    if(data){
+      console.log('signed in successfully')
+      console.log(data)
+
+      setEmail('')
+      setPassword('')
     }
   };
 
@@ -87,18 +65,6 @@ const Auth = () => {
       console.log("User signed out");
     } catch (error) {
       console.error("Sign out error:", error.message);
-    }
-  };
-
-  const handleCheckout = async () => {
-    try {
-      // Replace this with your actual Stripe price ID
-      const priceId = "price_1REdoKGBtqFG3CEbYmntmv99"; // 🔁 Get this from Stripe
-      const url = await getCheckoutUrl(auth.app, priceId);
-      window.location.href = url;
-    } catch (error) {
-      console.error("Checkout error:", error.message);
-      alert("Checkout failed: " + error.message);
     }
   };
 
@@ -127,9 +93,9 @@ const Auth = () => {
           className="bg-[#1773b0] w-full rounded-xl text-white p-2 cursor-pointer"
           onClick={signUp}
         >
-          Sign In
+          Sign Up
         </button>
-        <button
+        {/* <button
           className="bg-green-700 rounded-full w-[30px] h-[30px] text-white cursor-pointer"
           onClick={signInWithGoogle}
         >
@@ -140,13 +106,7 @@ const Auth = () => {
           onClick={logOut}
         >
           Log Out
-        </button>
-        <button
-          className="bg-black rounded-full text-white cursor-pointer px-4 py-2 mt-2"
-          onClick={handleCheckout}
-        >
-          Checkout
-        </button>
+        </button> */}
       </div>
     </>
   );

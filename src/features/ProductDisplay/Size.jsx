@@ -5,14 +5,17 @@ import {
   useProductStore,
   useImageColorStore,
 } from "../../store/productPageStore";
-
+import { useQuery, useQueryClient } from '@tanstack/react-query';
+import { useParams } from 'react-router-dom';
 
 const useProductImageState = () => {
   const setSelectedSize = useImageSizeStore((state) => state.setSelectedSize);
   const selectedSize = useImageSizeStore((state) => state.selectedSize);
   const isSizeSelected = useImageSizeStore((state) => state.isSizeSelected);
   const hasSizeInStock = useImageColorStore((state) => state.hasSizeInStock);
-  const product = useProductStore((state) => state.product);
+  const {productId} = useParams()
+  const queryClient = useQueryClient();
+  const product = queryClient.getQueryData(["products", productId]);  
   const selectedColor = useImageColorStore((state) => state.selectedColor);
   return {
     selectedSize,
@@ -35,7 +38,7 @@ const Size = ({ className, size }) => {
     setSelectedSize,
   } = useProductImageState();
 
-  const isInStock = hasSizeInStock(product, size);
+  const isInStock = hasSizeInStock(product[0], size);
   
   return (
     <div

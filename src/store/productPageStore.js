@@ -1,7 +1,7 @@
 import { create } from "zustand";
 
 export const useImageColorStore = create((set, get) => ({
-  selectedColor: '#000000',
+  selectedColor: 'BLACK',
   setSelectedColor: (color) => set(() => ({ selectedColor: color })),
   isColorSelected: (color) => get().selectedColor === color,
   hasSizeInStock: (product, size) => {

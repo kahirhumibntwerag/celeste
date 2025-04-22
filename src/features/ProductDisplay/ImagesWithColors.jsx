@@ -4,16 +4,21 @@ import {
   useImageColorStore,
 } from "../../store/productPageStore";
 import ResizableImage from "./ResizableImage";
+import { useQuery, useQueryClient } from '@tanstack/react-query';
+import { useParams } from 'react-router-dom';
 const ImagesWithColors = () => {
-  const product = useProductStore((state) => state.product);
+  const {productId} = useParams()
+  const queryClient = useQueryClient();
+  const product = queryClient.getQueryData(["products", productId]);  
   const selectedColor = useImageColorStore((state) => state.selectedColor);
+
   return (
     <div className="flex flex-col gap-4">
       <span>
         Color: <span>{selectedColor}</span>
       </span>
       <div className="flex gap-4">
-        {product.colors.map((color) => (
+        {product[0].colors.map((color) => (
           <div className="relative">
             {" "}
             <div

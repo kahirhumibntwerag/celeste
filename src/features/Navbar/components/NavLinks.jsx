@@ -5,7 +5,7 @@ const NavLinks = () => {
   return (
     <ul className="md:flex items-center hidden text-[1rem] flex-wrap">
       <li className="hover:underline hover:underline-offset-4 cursor-pointer px-3">
-        <Link to="/">All Products</Link>
+        <Link to="/collections/all">All Products</Link>
       </li>
 
       {/* Summer Collection */}
@@ -41,9 +41,9 @@ const NavLinks = () => {
       </li>
 
       <li className="cursor-pointer px-3 group relative">
-        <span className="hover:underline hover:underline-offset-4">
+        <Link to="/collections/ramadan-new" className="hover:underline hover:underline-offset-4">
           Ramadan
-        </span>
+        </Link>
       </li>
 
       {/* Winter Collection */}

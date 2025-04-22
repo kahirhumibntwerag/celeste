@@ -1,12 +1,21 @@
 import React, { useRef, useEffect, useState } from "react";
-import { products } from "../Product/data/Products";
 import Product from "../Product/Product";
 import SliderButton from "./SliderButton";
 import CustomButton from "../../components/CustomButton";
 import Header from "../../components/Header";
 import Track from "./Track";
+import { getProductsForSlider } from "../Filters/hooks/getProductsForSlider";
+import { useQuery } from "@tanstack/react-query";
+const Slider = ({category}) => {
+  const queryData = getProductsForSlider(
+    category
+  );
 
-const Slider = () => {
+  const { data:products, isLoading, isError, error } = useQuery({
+    queryKey: queryData.queryKey,
+    queryFn: queryData.queryFn,
+    staleTime: 1000 * 60 * 5,
+  });
   const [hovered, setHovered] = useState(0);
   // Refs for measuring container and item dimensions
   const firstProductRef = useRef(null);
@@ -15,6 +24,7 @@ const Slider = () => {
   // State for controlling slider position and touch interactions
   const [maxSlideIndex, setMaxSlideIndex] = useState(0);
   const [currentSlideIndex, setCurrentSlideIndex] = useState(0);
+  console.log(maxSlideIndex, currentSlideIndex)
   const [touchStartX, setTouchStartX] = useState(null);
   const [touchEndX, setTouchEndX] = useState(null);
 
@@ -62,12 +72,12 @@ const Slider = () => {
     let resizeDebounceTimer;
 
     const calculateMaxSlideIndex = () => {
-      if (firstProductRef.current && sliderContainerRef.current) {
+      if (firstProductRef.current && sliderContainerRef.current && products) {
         const productWidth = firstProductRef.current.offsetWidth;
         const containerWidth = sliderContainerRef.current.offsetWidth;
         const visibleProductCount = Math.floor(containerWidth / productWidth);
         const newMaxIndex =
-          Math.max(products.length - visibleProductCount, 0);
+          Math.max(products?.length - visibleProductCount, 0);
 
         setMaxSlideIndex(newMaxIndex);
         setCurrentSlideIndex((prev) => Math.min(prev, newMaxIndex));
@@ -86,7 +96,7 @@ const Slider = () => {
       window.removeEventListener("resize", handleResize);
       clearTimeout(resizeDebounceTimer);
     };
-  }, []);
+  }, [products]);
 
   // Auto-slide functionality
   useEffect(() => {
@@ -96,6 +106,11 @@ const Slider = () => {
 
     return () => clearInterval(autoSlideInterval);
   }, [currentSlideIndex]); // Add dependency to prevent stale closure
+  
+  console.log('this one', products)
+  if (isLoading) return <p>Loading...</p>;
+  if (isError) return <p>Error: {error.message}</p>;
+
 
   return (
     <>

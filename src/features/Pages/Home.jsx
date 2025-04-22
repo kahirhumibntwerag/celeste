@@ -18,12 +18,12 @@ const Home = () => {
       <Hero />
       <CategorySlider />
       <PromotionalHero />
-      <Slider />
+      <Slider category={'ramadan-new'}/>
       <Categories />
       <TextSlider />
       <VideoHero />
       <Collection />
-      <BestsellerSlider />
+      <Slider category={'abaya'}/>
       <Services />
       {/* <TransitionDemo/> */}
       {/* <SingleImageSlider/>  */}

@@ -22,7 +22,7 @@ const Track = ({
             {products.map((product, idx) => (
                 <div
                     ref={idx === 0 ? firstProductRef : null}
-                    key={product.id}
+                    key={product['product_id']}
                     className="flex-shrink-0 w-[300px]"
                 >
                     <Product product={product} />

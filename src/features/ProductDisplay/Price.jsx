@@ -1,10 +1,12 @@
 import React from 'react'
-import { useProductStore } from '../../store/productPageStore'
+import { useQuery, useQueryClient } from '@tanstack/react-query';
+import { useParams } from 'react-router-dom';
 const Price = () => {
-  const product = useProductStore((state) => state.product)
-  return (
+  const {productId} = useParams()
+  const queryClient = useQueryClient();
+  const product = queryClient.getQueryData(["products", productId]);    return (
     <>
-        <span className='text-2xl font-bold'>{product.price}</span>
+        <span className='text-2xl font-bold'>{product[0].price} EGP</span>
     </>
   )
 }

@@ -4,14 +4,14 @@ import {
   useProductStore,
   useImageSizeStore,
 } from "../../store/productPageStore";
-
+import { useQuery, useQueryClient } from '@tanstack/react-query';
+import { useParams } from 'react-router-dom';
 const useProductImageState = () => {
   return {
     selectedSize: useImageSizeStore((state) => state.selectedSize),
     selectedColor: useImageColorStore((state) => state.selectedColor),
     setSelectedColor: useImageColorStore((state) => state.setSelectedColor),
     isColorSelected: useImageColorStore((state) => state.isColorSelected),
-    product: useProductStore((state) => state.product),
     hasColorInStock: useImageSizeStore((state) => state.hasColorInStock),
   };
 };
@@ -22,11 +22,13 @@ const ResizableImage = ({ className, colorCode }) => {
     selectedColor,
     setSelectedColor,
     isColorSelected,
-    product,
     hasColorInStock,
   } = useProductImageState();
+  const {productId} = useParams()
+  const queryClient = useQueryClient();
+  const product = queryClient.getQueryData(["products", productId]); 
 
-  const src = product.colors.find((c) => c.name === colorCode)?.mainImage;
+  const src = product[0]?.colors.find((c) => c.name === colorCode)?.mainImage;
 
   return (
     <div
@@ -35,7 +37,7 @@ const ResizableImage = ({ className, colorCode }) => {
       }}
       className={`${className} ${
         isColorSelected(colorCode) ? " border-2 border-black" : ""
-      } ${hasColorInStock(product, colorCode) ? " opacity-100" : " opacity-50"}`}
+      } ${hasColorInStock(product[0], colorCode) ? " opacity-100" : " opacity-50"}`}
     >
       <img className="w-full h-full object-contain" src={src} />
     </div>

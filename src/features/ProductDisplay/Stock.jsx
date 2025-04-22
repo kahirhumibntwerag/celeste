@@ -1,14 +1,20 @@
 import React from 'react'
 import {useQuantityStore, useProductStore, useImageColorStore, useImageSizeStore} from '../../store/productPageStore'
+import { useQuery, useQueryClient } from '@tanstack/react-query';
+import { useParams } from 'react-router-dom';
 const Stock = () => {
     const selectedQuantity = useQuantityStore((state) => state.selectedQuantity);
     const getMaxQuantity = useQuantityStore((state) => state.getMaxQuantity);
-    const product = useProductStore((state) => state.product);
     const selectedColor = useImageColorStore((state) => state.selectedColor);
     const selectedSize = useImageSizeStore((state) => state.selectedSize);
+
+    const {productId} = useParams()
+    const queryClient = useQueryClient();
+    const product = queryClient.getQueryData(["products", productId]);  
+    console.log(product[0])
     
 
-    const maxStock = getMaxQuantity(product);
+    const maxStock = getMaxQuantity(product[0]);
     
     return (
         <div className='font-bold'>

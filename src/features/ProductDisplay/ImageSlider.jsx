@@ -1,11 +1,14 @@
 import { useProductStore } from "../../store/productPageStore";
 import VerticalSlider from "../Slider/VerticalSlider";
-
+import { useQuery, useQueryClient } from '@tanstack/react-query';
+import { useParams } from 'react-router-dom';
 const ImageSlider = ({className}) => {
-  const getAllProductImages = useProductStore(
-    (state) => state.getAllProductImages
-  );
-  const productImages = [...getAllProductImages(), ...getAllProductImages()];
+
+  const {productId} = useParams()
+  const queryClient = useQueryClient();
+  const product = queryClient.getQueryData(["products", productId]);
+  const productImages = product[0]?.images.map(obj=>obj.image)
+  console.log(productImages)
 
   return (
     <div className={className}>
