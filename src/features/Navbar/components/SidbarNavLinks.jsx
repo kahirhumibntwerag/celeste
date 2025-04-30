@@ -1,17 +1,17 @@
+import React from "react";
 import { Link } from "react-router-dom";
-import DropdownMenu from "./DropdownMenu";
 
-const NavLinks = ({ className }) => {
+const SidbarNavLinks = ({ className }) => {
   return (
     <ul className={className}>
-      <li className="hover:underline hover:underline-offset-4 cursor-pointer px-3">
+      <li className="w-full flex  cursor-pointer px-3 border-b-2 border-gray-300 pb-8">
         <Link to="/collections/all">All Products</Link>
       </li>
 
       {/* Summer Collection */}
-      <li className="cursor-pointer px-3 relative group">
-        <Link className="flex items-center gap-1 justify-center" to="/about">
-          <span className="hover:underline hover:underline-offset-4">
+      <li className="w-full flex cursor-pointer px-3 relative group border-b-2 border-gray-300 pb-8">
+        <Link className="flex items-center gap-1 " to="/about">
+          <span >
             Summer Collection
           </span>
           <svg
@@ -30,20 +30,11 @@ const NavLinks = ({ className }) => {
             />
           </svg>
         </Link>
-
-        <div
-          className={
-            "absolute z-50  top-2.5  mt-2 transition-all duration-500 ease-in-out group-hover:opacity-100 group-hover:translate-y-0 group-hover:pointer-events-auto opacity-0 translate-y-10 pointer-events-none"
-          }
-        >
-          <DropdownMenu />
-        </div>
       </li>
 
-      <li className="cursor-pointer px-3 group relative">
+      <li className="w-full flex cursor-pointer px-3 group relative border-b-2 border-gray-300 pb-8">
         <Link
           to="/collections/ramadan-new"
-          className="hover:underline hover:underline-offset-4"
         >
           Ramadan
         </Link>
@@ -51,12 +42,12 @@ const NavLinks = ({ className }) => {
 
       {/* Winter Collection */}
       <li
-        className="cursor-pointer px-3 relative group"
+        className="w-full cursor-pointer px-3 relative group border-b-2 border-gray-300 pb-8"
         onMouseEnter={() => setHovered("winter")}
         onMouseLeave={() => setHovered(null)}
       >
-        <Link className="flex items-center gap-1 justify-center" to="/about">
-          <span className="hover:underline hover:underline-offset-4">
+        <Link className="flex  gap-1 " to="/about">
+          <span >
             Winter Collection
           </span>
           <svg
@@ -75,17 +66,9 @@ const NavLinks = ({ className }) => {
             />
           </svg>
         </Link>
-
-        <div
-          className={
-            "absolute z-50  top-2.5  mt-2 transition-all duration-500 ease-in-out group-hover:opacity-100 group-hover:translate-y-0 group-hover:pointer-events-auto opacity-0 translate-y-10 pointer-events-none"
-          }
-        >
-          <DropdownMenu />
-        </div>
       </li>
     </ul>
   );
 };
 
-export default NavLinks;
+export default SidbarNavLinks;

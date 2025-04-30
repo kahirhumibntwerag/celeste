@@ -1,28 +1,29 @@
-import Navbar from './features/Navbar/Navbar'
-import Promobar from './features/Promobar/Promobar'
-import Test from './features/Test/Test'
-
-import {Outlet} from 'react-router-dom'
+import { Suspense, lazy } from 'react'
+import { Outlet } from 'react-router-dom'
 import { ProductContext } from './contexts/context'
-import Footer from './features/Footer/Footer'
 
+// Lazy load components
+const Navbar = lazy(() => import('./features/Navbar/Navbar'))
+const Promobar = lazy(() => import('./features/Promobar/Promobar'))
+const Footer = lazy(() => import('./features/Footer/Footer'))
 
 function App() {
-  const product ={
+  const product = {
     color: 'black',
     size: 'S'
   }
 
   return (
     <>
-    <ProductContext.Provider value={product}>
-      <Promobar/>
-      <Navbar/>
-      <Outlet/>
-      <Footer />
-      
-    </ProductContext.Provider>
-  </>
+      <ProductContext.Provider value={product}>
+        <Suspense fallback={<div>Loading...</div>}>
+          <Promobar />
+          <Navbar />
+          <Outlet />
+          <Footer />
+        </Suspense>
+      </ProductContext.Provider>
+    </>
   )
 }
 

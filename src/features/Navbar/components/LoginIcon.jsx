@@ -1,12 +1,12 @@
 import React from "react";
 import { useState } from "react";
-const LoginIcon = () => {
+const LoginIcon = ({className}) => {
   const [hovered, setHovered] = useState(false);
   return (
     <div
       onMouseOver={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
-      className="hover:underline hover:underline-offset-4 hidden lg:flex justify-center gap-2 items-center text-center font-bold text-[0.9rem] cursor-pointer"
+      className={className}
     >
       <svg
         className={`${hovered ? "up-then-down" : ""}`}

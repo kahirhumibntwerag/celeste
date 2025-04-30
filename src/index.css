@@ -176,6 +176,21 @@
   animation: fadeInZoom 1s ease-out forwards;
 }
 
+.fade-in-zoom-2 {
+  animation: fadeInZoom 2s ease-out forwards;
+}
+
+.fade-in-zoom-3 {
+  animation: fadeInZoom 3s ease-out forwards;
+}
+
+.fade-in-zoom-4 {
+  animation: fadeInZoom 4s ease-out forwards;
+}
+
+.fade-in-zoom-5 {
+  animation: fadeInZoom 5s ease-out forwards;
+}
 
 .up-then-down {
   animation: upThenDown 0.2s ease-out forwards;

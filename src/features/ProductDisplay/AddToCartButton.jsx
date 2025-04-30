@@ -7,23 +7,29 @@ import {
   useImageSizeStore,
   useQuantityStore
 } from "../../store/productPageStore";
+import { useQuery, useQueryClient } from '@tanstack/react-query';
+import { useParams } from 'react-router-dom';
+
 const AddToCartButton = () => {
   const availableQuantityfn = useAvailableQuantityStore(
     (state) => state.getAvailableQuantity
   );
-  const product = useProductStore((state) => state.product);
+  const {productId} = useParams()
+  const queryClient = useQueryClient();
+  const product = queryClient.getQueryData(["products", productId]);
+
   const selectedColor = useImageColorStore((state) => state.selectedColor);
   const selectedSize = useImageSizeStore((state) => state.selectedSize);
   const items = useCartStore((state) => state.items);
   const addToCart = useCartStore((state) => state.addToCart);
-  const availableQuantity = availableQuantityfn(product);
+  const availableQuantity = availableQuantityfn(product[0]);
   const selectedQuantity = useQuantityStore((state) => state.selectedQuantity);
   return (
     <>
       <button
         onClick={
           availableQuantity > 0
-            ? () => addToCart(product, selectedColor, selectedSize, selectedQuantity)
+            ? () => addToCart(product[0], selectedColor, selectedSize, selectedQuantity)
             : null
         }
         className={`${

@@ -11,7 +11,6 @@ const Stock = () => {
     const {productId} = useParams()
     const queryClient = useQueryClient();
     const product = queryClient.getQueryData(["products", productId]);  
-    console.log(product[0])
     
 
     const maxStock = getMaxQuantity(product[0]);

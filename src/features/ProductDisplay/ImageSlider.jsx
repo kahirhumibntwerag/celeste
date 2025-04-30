@@ -8,7 +8,6 @@ const ImageSlider = ({className}) => {
   const queryClient = useQueryClient();
   const product = queryClient.getQueryData(["products", productId]);
   const productImages = product[0]?.images.map(obj=>obj.image)
-  console.log(productImages)
 
   return (
     <div className={className}>

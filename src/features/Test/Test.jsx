@@ -1,52 +1,104 @@
-// App.js or any component
-import React, { useState } from 'react';
-import Slider from '@mui/material/Slider';
-import Box from '@mui/material/Box';
-import Typography from '@mui/material/Typography';
+import React, { useState, forwardRef, useRef, useEffect } from "react";
+import { cn } from "./cn";
 
-export default function Test() {
-  const [value, setValue] = useState([100, 1000]);
+// Basic UI components with forwardRef
 
-  const handleChange = (event, newValue) => {
-    setValue(newValue);
-  };
+const Card = forwardRef(({ className, ...props }, ref) => (
+  <div
+    ref={ref}
+    {...props}
+    className={cn("border-2 border-black w-[150px] h-[300px]", className)}
+  />
+));
+Card.displayName = "Card";
+
+const ImageContainer = forwardRef(({ className, ...props }, ref) => (
+  <div
+    ref={ref}
+    {...props}
+    className={cn("relative overflow-hidden", className)}
+  />
+));
+ImageContainer.displayName = "ImageContainer";
+
+const Image = forwardRef(({ className, ...props }, ref) => (
+  <img
+    ref={ref}
+    loading="lazy"
+    {...props}
+    className={cn("absolute inset-0 top-0 w-full h-full object-cover", className)}
+  />
+));
+Image.displayName = "Image";
+
+const Price = forwardRef(({ className, ...props }, ref) => (
+  <div ref={ref} {...props} className={cn("text-lg", className)} />
+));
+Price.displayName = "Price";
+
+const Title = forwardRef(({ className, ...props }, ref) => (
+  <div ref={ref} {...props} className={cn("text-xl font-semibold", className)} />
+));
+Title.displayName = "Title";
+
+const ColorSelector = forwardRef(({ className, ...props }, ref) => (
+  <div ref={ref} {...props} className={cn("flex gap-2", className)} />
+));
+ColorSelector.displayName = "ColorSelector";
+
+const Color = forwardRef(({ className, style, ...props }, ref) => (
+  <span
+    ref={ref}
+    {...props}
+    style={style}
+    className={cn("rounded-full w-4 h-4 cursor-pointer", className)}
+  />
+));
+Color.displayName = "Color";
+
+// Composed ProductCard component
+
+const ProductCard = ({ product }) => {
+  const [selectedColor, setSelectedColor] = useState("");
 
   return (
-    <Box sx={{ width: 300, margin: '50px auto' }}>
-      <Typography variant="h6" gutterBottom>
-        Price Range: EGP {value[0]} – EGP {value[1]}
-      </Typography>
-      <Slider
-  value={value}
-  onChange={handleChange}
-  valueLabelDisplay="auto"
-  min={0}
-  max={1400}
-  sx={{
-    height: 6,
-    '& .MuiSlider-track': {
-      backgroundColor: '#000',
-      height: 2,
-    },
-    '& .MuiSlider-rail': {
-      backgroundColor: 'black',
-      height: 2,
-    },
-    '& .MuiSlider-thumb': {
-      height: 20,
-      width: 20,
-      backgroundColor: '#fff',
-      border: '2px solid #000',
-      boxShadow: 'none',
-      '&:hover': { boxShadow: 'none' },
-      '&:focus': { boxShadow: 'none', outline: 'none' },
-      '&:active': { boxShadow: 'none' },
-      '&:focus-visible': { boxShadow: 'none', outline: 'none' },
-    },
-  }}
-/>
-
-    </Box>
+    <Card className="flex flex-col gap-2 p-2">
+      <ImageContainer className="h-[80%] w-full group aspect-[3/5]  border-2 border-black">
+        <Image
+          className="opacity-100 group-hover:opacity-0 transition-all duration-500"
+          src={product.mainImage}
+          alt={product.title}
+        />
+        <Image
+          className="opacity-0 group-hover:opacity-100 transition-all duration-500"
+          src={product.hoverImage}
+          alt={product.title}
+        />
+      </ImageContainer>
+      <Title>{product.title}</Title>
+      <Price>{product.price}</Price>
+      <ColorSelector>
+        {product.colors.map((color) => (
+          <Color
+            key={color.name}
+            style={{ backgroundColor: color.name }}
+            onClick={() => setSelectedColor(color.name)}
+            className={selectedColor === color.name ? "border-2 border-black" : ""}
+          />
+        ))}
+      </ColorSelector>
+    </Card>
   );
-}
+};
 
+// Export all components
+export {
+  Card,
+  ImageContainer,
+  Image,
+  Price,
+  Title,
+  ColorSelector,
+  Color,
+  ProductCard,
+};

@@ -8,26 +8,29 @@ import Price from "../Filters/Price";
 import { useParams } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 import { getProductsByCategory } from "../Filters/hooks/getProductsByCategory.js";
+import Sidbar from "../../components/Sidbar.jsx";
 
 const Collections = () => {
   const params = useParams();
   const [showList, setShowList] = useState(false);
-  const [showFilter, setShowFilter] = useState(false);
+  const [showFilter, setShowFilter] = useState('hidden');
   const [products, setProducts] = useState([]);
   const [pageIndex, setPageIndex] = useState(0);
   const dropdownRef = useRef(null);
-  const filterRef = useRef(null);
   const PAGE_SIZE = 20;
 
   useClickOutside(dropdownRef, () => setShowList(false));
-  useClickOutside(filterRef, () => setShowFilter(false));
 
   // Reset page index when category changes
   useEffect(() => {
     setPageIndex(0);
   }, [params.category]);
 
-  const queryData = getProductsByCategory(pageIndex, PAGE_SIZE, params.category);
+  const queryData = getProductsByCategory(
+    pageIndex,
+    PAGE_SIZE,
+    params.category
+  );
 
   const { data, isLoading, isError, error } = useQuery({
     queryKey: queryData.queryKey,
@@ -53,27 +56,21 @@ const Collections = () => {
   if (isError) return <p>Error: {error.message}</p>;
 
   return (
-    <div className="w-full pt-32 md:pt-16">
+    <div className="w-full pt-32 md:pt-16 min-h-[]">
       {/* Overlay for mobile filter */}
-      <div
-        className={`fixed inset-0 bg-black/30 z-40 block lg:hidden ${
-          showFilter ? "block" : "hidden"
-        }`}
-        onClick={() => setShowFilter(false)}
-      />
-      
-      {/* Filter sidebar (mobile) */}
-      <div
-        ref={filterRef}
-        className={`fixed top-0  w-[60%] h-full bg-white p-4 z-50 block lg:hidden ${
-          showFilter ? "slide-in" : "slide-out"
-        }`}
-      >
-        <FilterSidbar showFilter={showFilter} setShowFilter={setShowFilter} />
-      </div>
+      <Sidbar showFilter={showFilter} setShowFilter={setShowFilter} >
+        <Availability className="w-full" />
+        <Price className="w-full" />
+        <button className="bg-[#7d7d7d] border-1 border-black mt-4 w-full text-white px-4 py-2 rounded-4xl cursor-pointer">
+          Apply Filters
+        </button>
+      </Sidbar>
 
       {/* Top filter row */}
-      <div ref={dropdownRef} className="w-[95%] mx-auto border-b-2 border-gray-300 p-2">
+      <div
+        ref={dropdownRef}
+        className="w-[95%] mx-auto border-b-2 border-gray-300 p-2"
+      >
         <div className="flex justify-between items-center">
           <div>{data?.total ?? 0} products</div>
           <FilterDropdown showList={showList} setShowList={setShowList} />
@@ -119,7 +116,7 @@ const Collections = () => {
           disabled={pageIndex === 0}
           className="px-4 py-2 bg-transparent rounded disabled:opacity-50 cursor-pointer"
         >
-          {'<< Previous'}
+          {"<< Previous"}
         </button>
         <span className="px-4 py-2 font-semibold">{pageIndex + 1}</span>
         <button
@@ -127,8 +124,8 @@ const Collections = () => {
           disabled={pageIndex + 1 >= totalPages}
           className="px-4 py-2 bg-transparent rounded disabled:opacity-50 cursor-pointer"
         >
-          {'Next >>'}
-          </button>
+          {"Next >>"}
+        </button>
       </div>
     </div>
   );

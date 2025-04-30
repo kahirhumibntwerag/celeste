@@ -1,46 +1,71 @@
-import { StrictMode } from "react";
+import { StrictMode, lazy, Suspense } from "react";
 import { createRoot } from "react-dom/client";
 import "./index.css";
 import App from "./App.jsx";
-import About from "./features/Pages/About";
 import NotFoundPage from "./features/Pages/NotFoundPage";
-import ProductPage from "./features/Pages/Product";
 import { Provider } from "react-redux";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import Home from "./features/Pages/Home";
-import Collections from "./features/Pages/Collections";
-import SignIn from "./features/Pages/SignIn.jsx";
-import CheckoutForm from "./features/Stripe/CheckoutForm.jsx";
-import CompletePage from "./features/Stripe/CompletePage.jsx";
-import Stripe from "./features/Stripe/Stripe.jsx";
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 
+// Lazy load components
+const About = lazy(() => import("./features/Pages/About"));
+const ProductPage = lazy(() => import("./features/Pages/Product"));
+const Home = lazy(() => import("./features/Pages/Home"));
+const Collections = lazy(() => import("./features/Pages/Collections"));
+const SignIn = lazy(() => import("./features/Pages/SignIn.jsx"));
+const CheckoutForm = lazy(() => import("./features/Stripe/CheckoutForm.jsx"));
+const CompletePage = lazy(() => import("./features/Stripe/CompletePage.jsx"));
+const Stripe = lazy(() => import("./features/Stripe/Stripe.jsx"));
+
 const queryClient = new QueryClient();
+
+// Loading fallback component
+const LoadingSpinner = () => <div>Loading...</div>;
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <App />, // App acts as layout
+    element: <App />,
     children: [
       {
         path: "about",
-        element: <About />,
+        element: (
+          <Suspense fallback={<LoadingSpinner />}>
+            <About />
+          </Suspense>
+        ),
       },
       {
         path: "product/:productId",
-        element: <ProductPage />,
+        element: (
+          <Suspense fallback={<LoadingSpinner />}>
+            <ProductPage />
+          </Suspense>
+        ),
       },
       {
         path: "/",
-        element: <Home />,
+        element: (
+          <Suspense fallback={<LoadingSpinner />}>
+            <Home />
+          </Suspense>
+        ),
       },
       {
         path: "collections/:category",
-        element: <Collections />,
+        element: (
+          <Suspense fallback={<LoadingSpinner />}>
+            <Collections />
+          </Suspense>
+        ),
       },
       {
         path: "authentication/",
-        element: <SignIn />,
+        element: (
+          <Suspense fallback={<LoadingSpinner />}>
+            <SignIn />
+          </Suspense>
+        ),
       },
     ],
   },
@@ -50,15 +75,42 @@ const router = createBrowserRouter([
   },
   {
     path: "/checkout",
-    element: <Stripe />, // App acts as layout
-    children: [{ path: "", element: <CheckoutForm /> }],
+    element: (
+      <Suspense fallback={<LoadingSpinner />}>
+        <Stripe />
+      </Suspense>
+    ),
+    children: [
+      {
+        path: "",
+        element: (
+          <Suspense fallback={<LoadingSpinner />}>
+            <CheckoutForm />
+          </Suspense>
+        ),
+      }
+    ],
   },
   {
     path: "/complete",
-    element: <Stripe />, // App acts as layout
-    children: [{ path: "", element: <CompletePage /> }],
+    element: (
+      <Suspense fallback={<LoadingSpinner />}>
+        <Stripe />
+      </Suspense>
+    ),
+    children: [
+      {
+        path: "",
+        element: (
+          <Suspense fallback={<LoadingSpinner />}>
+            <CompletePage />
+          </Suspense>
+        ),
+      }
+    ],
   },
 ]);
+
 createRoot(document.getElementById("root")).render(
   <StrictMode>
     <QueryClientProvider client={queryClient}>

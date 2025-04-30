@@ -24,7 +24,6 @@ const Slider = ({category}) => {
   // State for controlling slider position and touch interactions
   const [maxSlideIndex, setMaxSlideIndex] = useState(0);
   const [currentSlideIndex, setCurrentSlideIndex] = useState(0);
-  console.log(maxSlideIndex, currentSlideIndex)
   const [touchStartX, setTouchStartX] = useState(null);
   const [touchEndX, setTouchEndX] = useState(null);
 
@@ -107,14 +106,13 @@ const Slider = ({category}) => {
     return () => clearInterval(autoSlideInterval);
   }, [currentSlideIndex]); // Add dependency to prevent stale closure
   
-  console.log('this one', products)
   if (isLoading) return <p>Loading...</p>;
   if (isError) return <p>Error: {error.message}</p>;
 
 
   return (
     <>
-      <div className="mx-10 mt-20">
+      <div className="mx-10 mt-20 ">
         <Header
           title="New Arrivals"
           subtitle="Discover the latest styles made for you."

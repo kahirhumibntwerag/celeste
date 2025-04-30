@@ -7,7 +7,6 @@ const MainImage = ({className}) => {
   const {productId} = useParams()
   const queryClient = useQueryClient();
   const product = queryClient.getQueryData(["products", productId]); 
-  console.log(product[0]) 
   return (
     <div className={className}>
       <img className="w-full h-full object-cover" src={product[0]?.colors?.find((c) => c.name === selectedColor)?.mainImage} alt={product[0].title} />

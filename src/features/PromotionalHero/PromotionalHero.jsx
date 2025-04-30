@@ -3,11 +3,13 @@ import CustomButton from "../../components/CustomButton";
 
 const PromotionalHero = () => {
   return (
-    <div className="flex md:flex-row flex-col w-full mt-5 ">
+    <div className="flex md:flex-row flex-col w-full mt-5 fade-in-zoom-2 ">
       <div className="flex-1 m-10">
         <img
           className="w-full"
           src="https://mlameh.com/cdn/shop/files/IMG_0192.JPEG_2.jpg?v=1742815887&width=1100"
+          width="500"
+          height="300"
         />
       </div>
       <div className="flex flex-row justify-center flex-1 m-10">

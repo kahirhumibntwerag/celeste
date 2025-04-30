@@ -39,7 +39,7 @@ const CustomButton = ({
         }
     };
 
-    const baseClasses = "rounded-3xl font-medium transition-all duration-300 flex items-center justify-center gap-2";
+    const baseClasses = "rounded-3xl font-medium transition-all duration-300 flex items-center justify-center gap-2 min-w-[120px] min-h-[40px]";
     const variantClass = VARIANTS[variant];
     const sizeClass = SIZES[size];
     const disabledClass = disabled ? "opacity-50 cursor-not-allowed" : "cursor-pointer hover:shadow-lg";
@@ -53,7 +53,7 @@ const CustomButton = ({
             className={`${baseClasses} ${variantClass} ${sizeClass} ${disabledClass} ${className}`}
         >
             {isLoading ? (
-                <span className="animate-spin">⭕</span>
+                <span className="animate-spin w-5 h-5">⭕</span>
             ) : (
                 <>
                     {icon && <span className="w-5 h-5">{icon}</span>}

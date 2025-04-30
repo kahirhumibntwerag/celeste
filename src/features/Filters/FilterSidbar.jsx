@@ -2,7 +2,7 @@ import { useState } from "react";
 import Availability from "./Availability";
 import Price from "./Price";
 
-const FilterSidbar = ({showFilter, setShowFilter}) => {
+const FilterSidbar = () => {
 
   return <div className="w-full flex flex-col gap-4 flex-shrink-0">
     <Availability className="w-full" />
