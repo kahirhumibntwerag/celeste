@@ -1,11 +1,15 @@
 import { useContext, createContext, useState, cloneElement, isValidElement } from "react";
 
-const BinaryContext = createContext(null)
+const BinaryContext = createContext(null);
 
+export function useBinaryContext() {
+  const ctx = useContext(BinaryContext);
+  if (!ctx) throw new Error("useBinaryContext must be used within <Binary>");
+  return ctx;
+}
 
 function useControllableState({ value, defaultValue, onChange }) {
   const [internalValue, setInternalValue] = useState(defaultValue);
-
   const isControlled = value !== undefined;
   const current = isControlled ? value : internalValue;
 
@@ -26,8 +30,6 @@ export function Binary({ children, open: openProp, onOpenChange, defaultOpen = f
     onChange: onOpenChange,
   });
 
-  console.log(open)
-
   return (
     <BinaryContext.Provider value={{ open, setOpen }}>
       {children}
@@ -35,54 +37,53 @@ export function Binary({ children, open: openProp, onOpenChange, defaultOpen = f
   );
 }
 
+export function BinaryTrigger({ asChild = false, children }) {
+  const { setOpen } = useBinaryContext();
 
-export function BinaryTrigger ({asChild=false, children}){
-    const {setOpen} = useContext(BinaryContext)
+  if (asChild && isValidElement(children)) {
+    return cloneElement(children, {
+      onClick: (e) => {
+        children.props?.onClick?.(e);
+        setOpen(true);
+      },
+    });
+  }
 
-    if (asChild && isValidElement(children)){
-        return cloneElement(children, {
-            onClick: (e)=>{
-                children.props?.onClick?.(e);
-                setOpen(true)
-            }
-        })
-    }
-
-    return (
-        <button onClick={()=>setOpen(true)}>
-            {children}
-        </button>
-    )
+  return <button onClick={() => setOpen(true)}>{children}</button>;
 }
 
-export function BinaryClose ({asChild=false, children}){
-    const {setOpen} = useContext(BinaryContext)
+export function BinaryClose({ asChild = false, children }) {
+  const { setOpen } = useBinaryContext();
 
-    if (asChild && isValidElement(children)){
-        return cloneElement(children, {
-            onClick: (e)=>{
-                children.props?.onClick?.(e);
-                setOpen(false)
+  if (asChild && isValidElement(children)) {
+    return cloneElement(children, {
+      onClick: (e) => {
+        children.props?.onClick?.(e);
+        setOpen(false);
+      },
+    });
+  }
 
-            }
-        })
-    }
-
-    return (
-        <button onClick={()=>setOpen(false)}>
-            {children}
-        </button>
-    )
+  return <button onClick={() => setOpen(false)}>{children}</button>;
 }
 
+// ✅ Radix-style BinaryContent
+export function BinaryContent({ forceMount = false, asChild = false, children }) {
+  const { open } = useBinaryContext();
 
-export function BinaryContent ({children}){
-    const {open} = useContext(BinaryContext)
-    if (!open) return null;
+  const shouldRender = forceMount || open;
 
-    return (
-        <div>
-            {children}
-        </div>
-    )
+  if (!shouldRender) return null;
+
+  if (asChild && isValidElement(children)) {
+    return cloneElement(children, {
+      'data-state': open ? 'open' : 'closed',
+    });
+  }
+
+  return (
+    <div data-state={open ? 'open' : 'closed'}>
+      {children}
+    </div>
+  );
 }

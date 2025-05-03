@@ -16,7 +16,7 @@ function App() {
   return (
     <>
       <ProductContext.Provider value={product}>
-        <Suspense fallback={<div>Loading...</div>}>
+        <Suspense fallback={<div className='bg-white h-[1000px] w-[1000px]'></div>}>
           <Promobar />
           <Navbar />
           <Outlet />

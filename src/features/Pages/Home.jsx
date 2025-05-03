@@ -18,6 +18,8 @@ import {
   BinaryTrigger,
 } from "../../components/Binary";
 
+import { AnimatePresence, motion } from "motion/react";
+
 // Lazy load other components
 const CategorySlider = React.lazy(() =>
   import("../Infiniteslider/CategorySlider")
@@ -37,21 +39,21 @@ const Services = React.lazy(() => import("../Services/Services"));
 const Footer = React.lazy(() => import("../Footer/Footer"));
 
 const Home = () => {
-  const product = {
-    title: "Stylish Jacket",
-    price: "$120",
-    mainImage:
-      "//mlameh.com/cdn/shop/files/S5450_1.jpg?v=1743931469&width=1500",
-    hoverImage:
-      "//mlameh.com/cdn/shop/files/S5450_6.jpg?v=1743931469&width=1500",
-    colors: [{ name: "red" }, { name: "blue" }, { name: "green" }],
-  };
+  // const product = {
+  //   title: "Stylish Jacket",
+  //   price: "$120",
+  //   mainImage:
+  //     "//mlameh.com/cdn/shop/files/S5450_1.jpg?v=1743931469&width=1500",
+  //   hoverImage:
+  //     "//mlameh.com/cdn/shop/files/S5450_6.jpg?v=1743931469&width=1500",
+  //   colors: [{ name: "red" }, { name: "blue" }, { name: "green" }],
+  // };
 
   return (
     <>
       {" "}
       <Hero />
-      <Binary >
+      {/* <Binary >
         <BinaryTrigger asChild>
           <button className="bg-amber-400">open</button>
         </BinaryTrigger>
@@ -66,8 +68,8 @@ const Home = () => {
             <div className="bg-black aspect-square p-32"></div>
           </div>
         </BinaryContent>
-      </Binary>
-      <Suspense fallback={<div>Loading...</div>}>
+      </Binary> */}
+      <Suspense fallback={<div className='bg-white h-[1000px] w-[1000px]'></div>}>
         <CategorySlider />
         <PromotionalHero />
         <Slider category={"ramadan-new"} />
@@ -77,7 +79,7 @@ const Home = () => {
         <Collection />
         <Slider category={"abaya"} />
         <Services />
-        <ProductCard product={product} />
+        {/* <ProductCard product={product} /> */}
       </Suspense>
       {/* <TransitionDemo/> */}
       {/* <SingleImageSlider/>  */}
