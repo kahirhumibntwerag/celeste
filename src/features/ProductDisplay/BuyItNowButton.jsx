@@ -30,7 +30,7 @@ const AddToCartButton = () => {
             : null
         }
         className={`${
-          availableQuantity <= 0 ? "bg-black/20" : "bg-black"
+          availableQuantity <= 0 ? "bg-black" : "bg-black"
         } text-white px-16 py-4 rounded-4xl cursor-pointer w-full`}
       >
         Buy It Now

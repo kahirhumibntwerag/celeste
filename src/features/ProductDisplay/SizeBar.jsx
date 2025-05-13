@@ -7,7 +7,7 @@ const SizeBar = () => {
   return (
     <div className="flex flex-col gap-2 w-full">
       <div className="font-bold">Size: <span className="font-normal">{selectedSize}</span></div>
-      <div className="flex justify-evenly  relative flex-wrap lg:flex-nowrap">
+      <div className="flex justify-start md:justify-evenly gap-4 relative flex-wrap lg:flex-nowrap">
         {["S", "M", "L", "XL"].map((size) => (
           <div className="relative">
                         <div

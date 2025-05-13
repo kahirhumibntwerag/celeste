@@ -1,21 +1,22 @@
 import React from "react";
 import { useNavigate, Link } from "react-router-dom";
+import BlurImage from "../../components/BlurImage";
 
 // New components
 const ImageContainer = ({ product, selectedColorIndex, navigate }) => (
   <div className="relative w-full h-full group" onClick={() => navigate(`/product/${product['product_id']}`)}>
-    <img
-      className="absolute inset-0 w-full h-full object-cover opacity-[1] group-hover:opacity-[0] transition-all duration-500"
-      src={product['main_image']}
-      alt={product.title}
-      loading="lazy"
-    />
-    <img
-      className="absolute inset-0 w-full h-full object-cover opacity-[0] group-hover:opacity-[1] transition-all duration-500"
-      src={product['secondary_image']}
-      alt={product.title}
-      loading="lazy"
-    />
+    <div className="absolute inset-0">
+      <BlurImage
+        className="absolute inset-0 w-full h-full transition-all duration-500 group-hover:opacity-0"
+        src={product['main_image']}
+        alt={product.title}
+      />
+      <BlurImage
+        className="absolute inset-0 w-full h-full transition-all duration-500 opacity-0 group-hover:opacity-100"
+        src={product['secondary_image']}
+        alt={product.title}
+      />
+    </div>
     <QuickViewButton navigate={navigate} />
   </div>
 );

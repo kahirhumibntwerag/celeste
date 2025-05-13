@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from "react";
+import React, { useEffect, useState, useRef, Suspense } from "react";
 import FilterDropdown from "../FilterDropdown/FilterDropdown";
 import useClickOutside from "../../hooks/useClickOutside";
 import Availability from "../Filters/Availability";
@@ -9,6 +9,48 @@ import { useParams } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 import { getProductsByCategory } from "../Filters/hooks/getProductsByCategory.js";
 import Sidbar from "../../components/Sidbar.jsx";
+import Footer from "../Footer/Footer.jsx";
+
+// Skeleton components
+const ProductCardSkeleton = () => (
+  <div className="w-full p-2 flex flex-col gap-3 animate-pulse">
+    <div className="w-full aspect-[3/5] bg-gray-200 rounded-lg" />
+    <div className="flex flex-col gap-3">
+      <div className="h-6 w-3/4 bg-gray-200 rounded" />
+      <div className="h-5 w-1/4 bg-gray-200 rounded" />
+      <div className="flex gap-1">
+        {[1, 2, 3].map((i) => (
+          <div key={i} className="w-4 h-4 bg-gray-200 rounded-full" />
+        ))}
+      </div>
+    </div>
+  </div>
+);
+
+const FiltersSkeleton = () => (
+  <div className="w-64 flex-col gap-4 hidden lg:flex flex-shrink-0 animate-pulse">
+    <div className="h-40 bg-gray-200 rounded-lg mb-4" />
+    <div className="h-40 bg-gray-200 rounded-lg" />
+  </div>
+);
+
+const TopBarSkeleton = () => (
+  <div className="w-[95%] mx-auto border-b-2 border-gray-300 p-2 animate-pulse">
+    <div className="flex justify-between items-center">
+      <div className="h-6 w-24 bg-gray-200 rounded" />
+      <div className="h-6 w-32 bg-gray-200 rounded" />
+    </div>
+    <div className="h-10 w-full bg-gray-200 rounded-4xl mt-4 block lg:hidden" />
+  </div>
+);
+
+const ProductGridSkeleton = () => (
+  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 p-8">
+    {[1, 2, 3, 4, 5, 6].map((i) => (
+      <ProductCardSkeleton key={i} />
+    ))}
+  </div>
+);
 
 const Collections = () => {
   const params = useParams();
@@ -52,10 +94,26 @@ const Collections = () => {
 
   const totalPages = data ? Math.ceil(data.total / PAGE_SIZE) : 1;
 
-  if (isLoading) return <p>Loading...</p>;
+  if (isLoading) {
+    return (
+      <div className="w-full pt-32 md:pt-16">
+        <TopBarSkeleton />
+        <div className="w-[95%] mx-auto p-2">
+          <div className="flex gap-8">
+            <FiltersSkeleton />
+            <div className="flex-grow">
+              <ProductGridSkeleton />
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
   if (isError) return <p>Error: {error.message}</p>;
 
   return (
+    <>
     <div className="w-full pt-32 md:pt-16 min-h-[]">
       {/* Overlay for mobile filter */}
       <Sidbar showFilter={showFilter} setShowFilter={setShowFilter} >
@@ -128,6 +186,8 @@ const Collections = () => {
         </button>
       </div>
     </div>
+    <Footer/>
+    </>
   );
 };
 

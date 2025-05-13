@@ -7,11 +7,11 @@ const collectionItems = [
     image: "//mlameh.com/cdn/shop/collections/IMG_0267_JPEG.jpg?v=1742809997&width=1500"
   },
   {
-    name: "DRESS",
+    name: "DRESSES",
     image: "//mlameh.com/cdn/shop/collections/B094-S5528-S5543_2.jpg?v=1742164115&width=1500"
   },
   {
-    name: "BLOUSE",
+    name: "BLOUSES",
     image: "//mlameh.com/cdn/shop/collections/S5402-S5402-1_5.jpg?v=1742164323&width=1500"
   },
   {
@@ -19,13 +19,19 @@ const collectionItems = [
     image: "//mlameh.com/cdn/shop/collections/S5570-S5570-1_2_ac4bf876-6b0c-4890-8ed3-fb437f50ce87.jpg?v=1742164284&width=1500"
   },
   {
-    name: "SHIRT",
+    name: "SHIRTS",
     image: "https://mlameh.com/cdn/shop/collections/B094-S5528-S5543_8.jpg?v=1742164210&width=1100"
   }
 ];
 
 const Collection = () => {
   const [selectedIndex, setSelectedIndex] = useState(0);
+  
+  const handleCollectionClick = (name) => {
+    // Convert collection name to lowercase and navigate
+    window.location.href = `/collections/${name.toLowerCase()}`;
+  };
+
   return (
     <div className=" mx-auto mt-32">
       <div className="flex flex-col items-start justify-center mx-8">
@@ -49,7 +55,10 @@ const Collection = () => {
             >
               <div className={`flex justify-between items-center border-b-2 ${selectedIndex===index?'text-black':'text-[#b2b2b2]'} border-[#b2b2b2] py-4 transition-colors duration-500 `}>
                 <p className="text-4xl md:text-5xl font-medium">{item.name}</p>
-                <button className={`p-3 bg-transparent rounded-full border-2 border-black cursor-pointer ${selectedIndex===index?'block':'hidden'}`}>
+                <button 
+                  onClick={() => handleCollectionClick(item.name)}
+                  className={`p-3 bg-transparent rounded-full border-2 border-black cursor-pointer ${selectedIndex===index?'block':'hidden'}`}
+                >
                   <svg
                     width="12"
                     height="12"

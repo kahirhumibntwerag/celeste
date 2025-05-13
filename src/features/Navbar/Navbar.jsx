@@ -57,13 +57,13 @@ const listItemVariants = {
   open: {
     opacity: 1,
     y: 0,
-    transition: { duration: 0.2 }
+    transition: { duration: 0.2 },
   },
   closed: {
     opacity: 0,
     y: -10,
-    transition: { duration: 0.2 }
-  }
+    transition: { duration: 0.2 },
+  },
 };
 
 // Add new summer menu variants
@@ -93,13 +93,13 @@ const summerItemVariants = {
   open: {
     x: 0,
     opacity: 1,
-    transition: { duration: 0.3 }
+    transition: { duration: 0.3 },
   },
   closed: {
     x: 50,
     opacity: 0,
-    transition: { duration: 0.3 }
-  }
+    transition: { duration: 0.3 },
+  },
 };
 
 // Add winter menu variants (same as summer)
@@ -151,10 +151,12 @@ const NavbarContent = () => {
 
           <LoginIcon className="hover:underline hover:underline-offset-4 hidden lg:flex justify-center gap-2 items-center text-center font-bold text-[0.9rem] cursor-pointer" />
 
-          <BagIcon />
+          <StateTrigger to="cart">
+            <BagIcon />
+          </StateTrigger>
 
           <AnimatePresence mode="wait" initial={false}>
-            {state !== "idle" ? (
+            {state.includes("menu", 'summer', 'winter') ? (
               <StateTrigger to="idle" key="close" asChild>
                 <motion.div
                   initial={{ opacity: 0, y: -10 }}
@@ -211,7 +213,10 @@ const NavbarContent = () => {
               exit="closed"
               className="bg-white w-full absolute z-10 max-h-[100vh] overflow-hidden"
             >
-              <motion.div layout className="p-6 overflow-y-auto h-[calc(100vh-2rem)] [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden flex flex-col">
+              <motion.div
+                layout
+                className="p-6 overflow-y-auto h-[calc(100vh-2rem)] [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden flex flex-col"
+              >
                 <motion.div layout variants={childVariants}>
                   <Searchbar className="flex gap-2 items-center rounded-4xl border-2 border-gray-300 px-3 py-1 relative">
                     <SearchIcon className="size-5 text-gray-500" />
@@ -223,7 +228,11 @@ const NavbarContent = () => {
                   </Searchbar>
                 </motion.div>
 
-                <motion.div layout variants={childVariants} className="mt-8 flex-1">
+                <motion.div
+                  layout
+                  variants={childVariants}
+                  className="mt-8 flex-1"
+                >
                   <SidebarNav className="items-start gap-8">
                     <SidebarNavItem>
                       <StateTrigger to="idle" asChild>
@@ -239,7 +248,7 @@ const NavbarContent = () => {
                       </StateTrigger>
                     </SidebarNavItem>{" "}
                     <SidebarNavItem>
-                      <StateTrigger to='idle' asChild>
+                      <StateTrigger to="idle" asChild>
                         {" "}
                         <Link to="/collections/ramadan-new">Ramadan</Link>
                       </StateTrigger>
@@ -255,7 +264,11 @@ const NavbarContent = () => {
                   </SidebarNav>
                 </motion.div>
 
-                <motion.div layout variants={childVariants} className="mt-8 pt-8 border-t-2 border-gray-300">
+                <motion.div
+                  layout
+                  variants={childVariants}
+                  className="mt-8 pt-8 border-t-2 border-gray-300"
+                >
                   <StateTrigger to="idle">
                     <LoginIcon className="w-full hover:underline hover:underline-offset-4 flex gap-2 items-center text-[0.9rem] cursor-pointer" />
                   </StateTrigger>
@@ -279,7 +292,10 @@ const NavbarContent = () => {
               exit="closed"
               className="bg-white w-full absolute z-10 max-h-[100vh] overflow-hidden"
             >
-              <motion.div layout className="p-6 overflow-y-auto h-[calc(100vh-2rem)] [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+              <motion.div
+                layout
+                className="p-6 overflow-y-auto h-[calc(100vh-2rem)] [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+              >
                 <motion.div layout variants={summerItemVariants}>
                   <SidebarNav className="items-start gap-8">
                     <SidebarNavItem>
@@ -291,42 +307,58 @@ const NavbarContent = () => {
                     </SidebarNavItem>
                     <SidebarNavItem>
                       <StateTrigger to="idle" asChild>
-                        <Link to="/collections/jackets" className="text-base">Jackets</Link>
+                        <Link to="/collections/jackets" className="text-base">
+                          Jackets
+                        </Link>
                       </StateTrigger>
                     </SidebarNavItem>
                     <SidebarNavItem>
                       <StateTrigger to="idle" asChild>
-                        <Link to="/collections/shirts" className="text-base">Shirts</Link>
+                        <Link to="/collections/shirts" className="text-base">
+                          Shirts
+                        </Link>
                       </StateTrigger>
                     </SidebarNavItem>
                     <SidebarNavItem>
                       <StateTrigger to="idle" asChild>
-                        <Link to="/collections/pants" className="text-base">Pants</Link>
+                        <Link to="/collections/pants" className="text-base">
+                          Pants
+                        </Link>
                       </StateTrigger>
                     </SidebarNavItem>
                     <SidebarNavItem>
                       <StateTrigger to="idle" asChild>
-                        <Link to="/collections/dresses" className="text-base">Dresses</Link>
+                        <Link to="/collections/dresses" className="text-base">
+                          Dresses
+                        </Link>
                       </StateTrigger>
                     </SidebarNavItem>
                     <SidebarNavItem>
                       <StateTrigger to="idle" asChild>
-                        <Link to="/collections/abaya" className="text-base">Abaya</Link>
+                        <Link to="/collections/abaya" className="text-base">
+                          Abaya
+                        </Link>
                       </StateTrigger>
                     </SidebarNavItem>
                     <SidebarNavItem>
                       <StateTrigger to="idle" asChild>
-                        <Link to="/collections/blazers" className="text-base">Blazers</Link>
+                        <Link to="/collections/blazers" className="text-base">
+                          Blazers
+                        </Link>
                       </StateTrigger>
                     </SidebarNavItem>
                     <SidebarNavItem>
                       <StateTrigger to="idle" asChild>
-                        <Link to="/collections/tops" className="text-base">Tops</Link>
+                        <Link to="/collections/tops" className="text-base">
+                          Tops
+                        </Link>
                       </StateTrigger>
                     </SidebarNavItem>
                     <SidebarNavItem>
                       <StateTrigger to="idle" asChild>
-                        <Link to="/collections/blouses" className="text-base">Blouses</Link>
+                        <Link to="/collections/blouses" className="text-base">
+                          Blouses
+                        </Link>
                       </StateTrigger>
                     </SidebarNavItem>
                   </SidebarNav>
@@ -350,7 +382,10 @@ const NavbarContent = () => {
               exit="closed"
               className="bg-white w-full absolute z-10 max-h-[100vh] overflow-hidden"
             >
-              <motion.div layout className="p-6 overflow-y-auto h-[calc(100vh-2rem)] [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+              <motion.div
+                layout
+                className="p-6 overflow-y-auto h-[calc(100vh-2rem)] [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+              >
                 <motion.div layout variants={summerItemVariants}>
                   <SidebarNav className="items-start gap-8">
                     <SidebarNavItem>
@@ -362,42 +397,58 @@ const NavbarContent = () => {
                     </SidebarNavItem>
                     <SidebarNavItem>
                       <StateTrigger to="idle" asChild>
-                        <Link to="/collections/jackets" className="text-base">Jackets</Link>
+                        <Link to="/collections/jackets" className="text-base">
+                          Jackets
+                        </Link>
                       </StateTrigger>
                     </SidebarNavItem>
                     <SidebarNavItem>
                       <StateTrigger to="idle" asChild>
-                        <Link to="/collections/shirts" className="text-base">Shirts</Link>
+                        <Link to="/collections/shirts" className="text-base">
+                          Shirts
+                        </Link>
                       </StateTrigger>
                     </SidebarNavItem>
                     <SidebarNavItem>
                       <StateTrigger to="idle" asChild>
-                        <Link to="/collections/pants" className="text-base">Pants</Link>
+                        <Link to="/collections/pants" className="text-base">
+                          Pants
+                        </Link>
                       </StateTrigger>
                     </SidebarNavItem>
                     <SidebarNavItem>
                       <StateTrigger to="idle" asChild>
-                        <Link to="/collections/dresses" className="text-base">Dresses</Link>
+                        <Link to="/collections/dresses" className="text-base">
+                          Dresses
+                        </Link>
                       </StateTrigger>
                     </SidebarNavItem>
                     <SidebarNavItem>
                       <StateTrigger to="idle" asChild>
-                        <Link to="/collections/abaya" className="text-base">Abaya</Link>
+                        <Link to="/collections/abaya" className="text-base">
+                          Abaya
+                        </Link>
                       </StateTrigger>
                     </SidebarNavItem>
                     <SidebarNavItem>
                       <StateTrigger to="idle" asChild>
-                        <Link to="/collections/blazers" className="text-base">Blazers</Link>
+                        <Link to="/collections/blazers" className="text-base">
+                          Blazers
+                        </Link>
                       </StateTrigger>
                     </SidebarNavItem>
                     <SidebarNavItem>
                       <StateTrigger to="idle" asChild>
-                        <Link to="/collections/tops" className="text-base">Tops</Link>
+                        <Link to="/collections/tops" className="text-base">
+                          Tops
+                        </Link>
                       </StateTrigger>
                     </SidebarNavItem>
                     <SidebarNavItem>
                       <StateTrigger to="idle" asChild>
-                        <Link to="/collections/blouses" className="text-base">Blouses</Link>
+                        <Link to="/collections/blouses" className="text-base">
+                          Blouses
+                        </Link>
                       </StateTrigger>
                     </SidebarNavItem>
                   </SidebarNav>
@@ -412,9 +463,7 @@ const NavbarContent = () => {
 };
 
 const Navbar = () => (
-  <StateMachine defaultValue="idle">
     <NavbarContent />
-  </StateMachine>
 );
 
 export default Navbar;

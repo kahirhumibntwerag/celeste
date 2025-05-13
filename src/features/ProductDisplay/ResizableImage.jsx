@@ -1,4 +1,5 @@
 import React from "react";
+import BlurImage from "../../components/BlurImage";
 import {
   useImageColorStore,
   useProductStore,
@@ -6,6 +7,7 @@ import {
 } from "../../store/productPageStore";
 import { useQuery, useQueryClient } from '@tanstack/react-query';
 import { useParams } from 'react-router-dom';
+
 const useProductImageState = () => {
   return {
     selectedSize: useImageSizeStore((state) => state.selectedSize),
@@ -36,10 +38,16 @@ const ResizableImage = ({ className, colorCode }) => {
         setSelectedColor(colorCode);
       }}
       className={`${className} ${
-        isColorSelected(colorCode) ? " border-2 border-black" : ""
-      } ${hasColorInStock(product[0], colorCode) ? " opacity-100" : " opacity-50"}`}
+        selectedColor === colorCode ? "border-2 border-black" : ""
+      } ${hasColorInStock(product[0], colorCode) ? "opacity-100" : "opacity-50"}`}
     >
-      <img className="w-full h-full object-contain" src={src} />
+      <BlurImage 
+        className="w-full h-full object-contain" 
+        src={src} 
+        alt={`Color variant ${colorCode}`}
+        width='88px'
+        height='132px'
+      />
     </div>
   );
 };

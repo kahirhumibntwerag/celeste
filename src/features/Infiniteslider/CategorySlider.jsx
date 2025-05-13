@@ -64,7 +64,7 @@ const CategorySlider = () => {
           <Category key={index} {...category} />
         ))}
       </InfiniteSlider>
-      <div className="w-full border-b-2 border-gray-400"></div>
+      <div className="hidden xl:block w-full border-b-2 border-gray-400"></div>
     </>
   );
 };

@@ -22,6 +22,7 @@ const PromotionalHero = () => {
             variant="primary"
             size="md"
             className="mx-auto my-5 px-5"
+            to="/collections/all"
           />
         </div>
       </div>

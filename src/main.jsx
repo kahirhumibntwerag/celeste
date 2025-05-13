@@ -20,7 +20,7 @@ const Stripe = lazy(() => import("./features/Stripe/Stripe.jsx"));
 const queryClient = new QueryClient();
 
 // Loading fallback component
-const LoadingSpinner = () => <div>Loading...</div>;
+const LoadingSpinner = () => <div></div>;
 
 const router = createBrowserRouter([
   {

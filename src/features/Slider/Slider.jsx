@@ -111,8 +111,8 @@ const Slider = ({category}) => {
 
 
   return (
-    <>
-      <div className="mx-10 mt-20 ">
+    <div className="pt-24 pb-32">
+      <div className="">
         <Header
           title="New Arrivals"
           subtitle="Discover the latest styles made for you."
@@ -149,7 +149,7 @@ const Slider = ({category}) => {
           />
         </div>
       </div>
-    </>
+    </div>
   );
 };
 

@@ -1,12 +1,10 @@
 import React from 'react'
-import { useQuantityStore, useProductStore } from '../../store/productPageStore'
+import { useQuantityStore } from '../../store/productPageStore'
 
 const QuantityBar = () => {
     const selectedQuantity = useQuantityStore((state) => state.selectedQuantity);
     const setSelectedQuantity = useQuantityStore((state) => state.setSelectedQuantity);
-    const getMaxQuantity = useQuantityStore((state) => state.getMaxQuantity);
-    const product = useProductStore((state) => state.product);
-
+    
     const decrementQuantity = () => {
         if (selectedQuantity > 1) {
             setSelectedQuantity(selectedQuantity - 1);
@@ -14,17 +12,29 @@ const QuantityBar = () => {
     };
 
     const incrementQuantity = () => {
-        const maxQuantity = getMaxQuantity(product);
-        if (selectedQuantity < maxQuantity) {
-            setSelectedQuantity(selectedQuantity + 1);
-        }
+        setSelectedQuantity(selectedQuantity + 1);
     };
 
     return (
-        <div className="flex gap-4 justify-between border-1 border-gray-400 p-2">
-            <span className="cursor-pointer text-2xl" onClick={decrementQuantity}>-</span>
-            <span className='text-2x'>{selectedQuantity}</span>
-            <span className="cursor-pointer text-2xl" onClick={incrementQuantity}>+</span>
+        <div className="flex gap-4 justify-between border border-gray-400 rounded p-2">
+            <button 
+                className={`text-2xl px-2 hover:bg-gray-100 rounded ${selectedQuantity === 1 ? 'text-gray-400 cursor-not-allowed' : 'cursor-pointer'}`}
+                onClick={decrementQuantity}
+                disabled={selectedQuantity === 1}
+                aria-label="Decrease quantity"
+            >
+                -
+            </button>
+            <span className='text-2xl' aria-label={`Quantity: ${selectedQuantity}`}>
+                {selectedQuantity}
+            </span>
+            <button 
+                className="text-2xl px-2 hover:bg-gray-100 rounded cursor-pointer"
+                onClick={incrementQuantity}
+                aria-label="Increase quantity"
+            >
+                +
+            </button>
         </div>
     )
 }
